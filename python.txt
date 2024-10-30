@@ -1,0 +1,61 @@
+Lab program 1 : file name - prog1_arithmetic.py : Aim : Write a program that takes two numbers and perform arithmetic operations.
+
+Lab program 2 : file name - prog2_areaofcircle.py : Aim : Write a program that calculates area of the circle.
+
+Lab program 3 : file name - prog3_areaoftriangle.py : Aim : Write a program that calculates area of the triangle.
+
+Lab program 4 : file name - prog4_areaofrectangle.py : Aim : Write a program that calculates area of the rectangle. Description
+
+01/10/2024
+
+Lab program 5 : file name - prog5_percentageofmark.py : Aim : Write a program to calculate total mark and percentage of 5 subjects.
+
+Lab program 6 : file name - prog6_swapval.py : Aim : Write a program to swap values without using temperory variables.
+
+Lab program 7 : file name - prog7_incredecre.py : Aim : Write a program to input a number and increment the number by 5 and decrement the number by 3. Description
+
+04/10/2024
+
+Lab program 8 : file name - prog8_positiveornegative.py : Aim : Write a program to check whether the number is positive, negative or zero.
+
+Lab program 9 : file name - prog9_positivenumfromlist.py : Aim : Write a program to generate list of positive numbers from a given list of integers.
+
+Lab program 10 : file name - prog10_squareofnnum.py : Aim : Write a program to print the square of n numbers.
+
+Lab program 11 : file name - prog11_leapyear.py : Aim : Write a program to display future leap years from current year to a final year given by the user. Description
+
+09/10/2024
+
+Lab program 12 : file name - prog12_largestof3num.py : Aim : Write a program to find largest of three numbers.
+
+Lab program 13 : file name - prog13_factorial.py : Aim : Write a program to find factorial of a number.
+
+Lab program 14 : file name - prog14_oddoreven.py : Aim : Write a program to check whether the given number is odd or even.
+
+Lab program 15 : file name - prog15_vowelinastring.py : Aim : Write a program to check vowels in a string.
+
+Lab program 16 : file name - prog16_swaplistelements.py : Aim : Write a program to swap first and last element in a list. Description
+
+16/10/2024
+
+Lab program 17 : file name - prog17_appendtolist.py : Aim : Write a program to create an emoty list and add elements to the list.
+
+Lab program 18 : file name - prog18_wordoccurance.py : Aim : Write a program to count the occurances of each word in a line of text.
+
+Lab program 19 : file name - prog19_occuranceofA.py : Aim : Write a program to store a list of first names and count the occurances of letter 'A' within the list. Description
+
+18/10/2024
+
+Lab program 20 : file name - prog20_overwhen100.py : Aim : Write a program to prompt the user for a list of integers and for all values greater than 100 store '100' instead.
+
+Lab program 21 : file name - prog21_intcheck.py : Aim : Enter two list of intergers and check: a. The lists are of same length. b. Whether the lists sums to same values. c. Whether any value occur in both.
+
+Lab program 22 : file name - prog22_replacewithdollar.py : Aim : Write a program to get a string as input and check whether all occurances of 1st character replaced with '$' except the 1st character.
+
+Lab program 23 : file name - prog23_swapfirstlast.py : Aim : Write a program to create a string from given string where 1st and last character are exchanged.
+
+Lab program 24 : file name - prog24_colorswap.py : Aim : Write a program to create a list of colours with a ',' seperated colour names entered by the user and display 1st and last colour in the list. Description
+
+23/10/2024
+
+Lab program 25 : file name - prog25_minmaxsortsumcount.py : Aim : Write a program to find the lowest value,highest value,count,sum,reverse order, sorted order of the items in the list using built in functions.
