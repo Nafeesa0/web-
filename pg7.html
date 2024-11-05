@@ -1,0 +1,28 @@
+<html>
+<body><br>
+<center> <div class="content" id="contentBox">
+        TOUCH ME!!!!!!
+</div></center>
+<br><br>
+<center> <div id="hoverContent">
+        <img src="img4.jpg" width="400px" height="300px">
+        <p> I'M IMPORTANT TO MYSELF</p>
+    </div></center>
+
+    <script>
+        
+        const contentBox = document.getElementById('contentBox');
+        const hoverContent = document.getElementById('hoverContent');
+
+        
+        contentBox.addEventListener('mouseover', function() {
+            hoverContent.style.display = 'block'; 
+        });
+
+        contentBox.addEventListener('mouseout', function() {
+            hoverContent.style.display = 'none'; 
+        });
+    </script>
+
+</body>
+</html>
