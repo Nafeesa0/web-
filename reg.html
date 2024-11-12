@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>Registration Form with Validation</title>
+    <style>
+        body, input, select, textarea { font-family: Arial, sans-serif; padding: 10px; width: 100%; }
+        .form-container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: beige; }
+        h1, label { text-align: center; color: #333; font-weight: bold; }
+        input, select, textarea { padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        .error { color: red; font-size: 0.875em; }
+        .success { color: green; font-size: 1em; display: none; }
+        .submit-btn { background-color: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .submit-btn:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <label for="name">Full Name:</label><input type="text" id="name" required><span id="nameError" class="error"></span>
+            <label for="username">Username:</label><input type="text" id="username" required><span id="usernameError" class="error"></span>
+            <label for="password">Password:</label><input type="password" id="password" required><span id="passwordError" class="error"></span>
+            <label for="confirmPassword">Confirm Password:</label><input type="password" id="confirmPassword" required><span id="confirmPasswordError" class="error"></span>
+            <label for="gender">Gender:</label><select id="gender" required><option value="">Select Gender</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select><span id="genderError" class="error"></span>
+            <label for="mobile">Mobile Number:</label><input type="text" id="mobile" required><span id="mobileError" class="error"></span>
+            <label for="address">Address:</label><textarea id="address" rows="4" required></textarea><span id="addressError" class="error"></span>
+            <label for="email">Email ID:</label><input type="email" id="email" required><span id="emailError" class="error"></span>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div id="formSuccess" class="success"><p>Your registration is successful!</p></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            clearErrors();
+
+            const fields = {
+                name: /^[a-zA-Z\s]+$/, username: /^[a-zA-Z0-9]{6,15}$/, password: /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/,
+                confirmPassword: document.getElementById('password').value, mobile: /^\d{10}$/, email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            };
+
+            const inputs = {
+                name: document.getElementById('name').value,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirmPassword').value,
+                gender: document.getElementById('gender').value,
+                mobile: document.getElementById('mobile').value,
+                address: document.getElementById('address').value,
+                email: document.getElementById('email').value
+            };
+
+            for (let key in fields) {
+                if (key !== "confirmPassword" && !fields[key].test(inputs[key])) {
+                    showError(key, `Invalid ${key}.`);
+                    isValid = false;
+                }
+            }
+
+            if (inputs.password !== inputs.confirmPassword) {
+                showError('confirmPassword', 'Passwords do not match.');
+                isValid = false;
+            }
+
+            if (inputs.gender === "") { showError('gender', 'Please select your gender.'); isValid = false; }
+            if (inputs.address.trim() === "") { showError('address', 'Address cannot be empty.'); isValid = false; }
+
+            if (isValid) {
+                document.getElementById('formSuccess').style.display = 'block';
+                document.getElementById('registrationForm').reset();
+                setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 5000);
+            }
+
+            return isValid;
+        }
+
+        function showError(field, message) {
+            document.getElementById(field + 'Error').innerText = message;
+        }
+
+        function clearErrors() {
+            ['name', 'username', 'password', 'confirmPassword', 'gender', 'mobile', 'address', 'email'].forEach(field => {
+                document.getElementById(field + 'Error').innerText = '';
+            });
+        }
+    </script>
+
+</body>
+</html>

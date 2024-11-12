@@ -1,0 +1,225 @@
+<html>
+<head>
+    <title>Registration Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: beige;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .error {
+            color: red;
+            font-size: 0.875em;
+        }
+        .success {
+            color: green;
+            font-size: 1em;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <span id="firstNameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <span id="lastNameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <span id="usernameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span id="confirmPasswordError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <span id="genderError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" name="mobile" required>
+                <span id="mobileError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+                <span id="addressError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" required>
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+
+        <div id="formSuccess" class="success" style="display:none;">
+            <p>Your registration is successful!</p>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            clearErrors();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const gender = document.getElementById('gender').value;
+            const mobile = document.getElementById('mobile').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+
+            // Validate First Name
+            if (!/^[a-zA-Z]+$/.test(firstName)) {
+                document.getElementById('firstNameError').innerText = 'First name must contain only letters.';
+                isValid = false;
+            }
+
+            // Validate Last Name
+            if (!/^[a-zA-Z]+$/.test(lastName)) {
+                document.getElementById('lastNameError').innerText = 'Last name must contain only letters.';
+                isValid = false;
+            }
+
+            // Validate Username
+            if (!/^[a-zA-Z0-9]{6,15}$/.test(username)) {
+                document.getElementById('usernameError').innerText = 'Username must be alphanumeric and 6-15 characters long.';
+                isValid = false;
+            }
+
+            // Validate Password
+            if (!/^(?=.*[a-zA-Z])(?=.*\d).{8,}$/.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and contain both letters and numbers.';
+                isValid = false;
+            }
+
+            // Validate Confirm Password
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').innerText = 'Passwords do not match.';
+                isValid = false;
+            }
+
+            // Validate Gender
+            if (gender === "") {
+                document.getElementById('genderError').innerText = 'Please select your gender.';
+                isValid = false;
+            }
+
+            // Validate Mobile Number
+            if (!/^\d{10}$/.test(mobile)) {
+                document.getElementById('mobileError').innerText = 'Mobile number must be exactly 10 digits.';
+                isValid = false;
+            }
+
+            // Validate Address
+            if (address.trim() === "") {
+                document.getElementById('addressError').innerText = 'Address cannot be empty.';
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Show success message if valid
+            if (isValid) {
+                document.getElementById('formSuccess').style.display = 'block';
+                document.getElementById('registrationForm').reset();
+                setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 5000);
+            }
+
+            return isValid;
+        }
+
+        function clearErrors() {
+            document.getElementById('firstNameError').innerText = '';
+            document.getElementById('lastNameError').innerText = '';
+            document.getElementById('usernameError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+            document.getElementById('confirmPasswordError').innerText = '';
+            document.getElementById('genderError').innerText = '';
+            document.getElementById('mobileError').innerText = '';
+            document.getElementById('addressError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+        }
+    </script>
+
+</body>
+</html>
