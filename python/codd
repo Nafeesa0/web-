@@ -1,0 +1,24 @@
+def count_words(sentence):
+    """Counts the occurrences of each word in a sentence."""
+    word_counts = {}
+    words = sentence.split()
+    for word in words:
+        word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def search_word(sentence, word_to_search):
+    """Checks if a given word is present in the sentence."""
+    return word_to_search in sentence.split()
+
+if __name__ == "__main__":
+    sentence = input("Enter a sentence: ")
+    word_counts = count_words(sentence)
+    print("The word counts in the sentence are:")
+    for word, count in word_counts.items():
+        print(f"{word}: {count}")
+
+    word_to_search = input("Enter the word to search for: ")
+    if search_word(sentence, word_to_search):
+        print(f"The word '{word_to_search}' is present in the sentence.")
+    else:
+        print(f"The word '{word_to_search}' is not present in the sentence.")
