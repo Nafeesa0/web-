@@ -20,14 +20,20 @@ $players = array("Virat Kohli",
 	<center><h2>List Of Cricket Players</h2></center>
 	<center><table border="1">
 	<tr>
+		
+	<th>Sl. No.</th>
+		
 	<th>Players Name</th>
 	</tr>
 
 	
 	<?php
+		$slNo = 1;
+
 		foreach($players as $player)
 		{
-			echo"<tr><td>$player</td></tr>";
+			echo"<tr><td>$slNo</td><td>$player</td></tr>";
+			$slNo++;
 		}
 	?>
 	
