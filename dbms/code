@@ -1,0 +1,93 @@
+dbmsIn continuation with the Practice Question - I do the following modification in the database:
+
+Questions:
+
+1. Create a table "departments" with the following structure:  
+   - dno (integer, Primary Key)  
+   - dname (varchar(50), Cannot be NULL)  
+   
+   * create table departments(dno int primary key,dname varchar(50) unique);
+
+2. Create a table "bookissues" with the following structure:  
+   - bookid (integer)  
+   - studentid (integer)  
+   - issue_date (date)  
+   - return_date (date)  
+   - fine (decimal(5,2), Default value 0.00)
+   
+   * create table bookissues( bookid int, studentid int, issue_date date, return_date date,fine decimal(5,2) default 0.00 ,constraint bookissues_fkey_bookid foreign key(bookid) references books(bookid), constraint bookissues_fkey_studentid foreign key(studentid)  references students(studentid) );
+
+3. Alter the "students" table to:  
+   - Remove the attribute "course"
+  
+   * alter table students drop column course;
+
+   
+   - Add a column "dno" of type integer. 
+   
+   *  alter table students add dno int;
+
+ 
+   - Add a foreign key constraint to refer the "dno" attribute to "department" table. 
+   
+   * alter table students add constraint students_fkey_dno foreign key(dno) references departments(dno);
+    
+
+4. Alter table "bookissues" table to:
+   - Add a composite primary key constraint with attributes "bookid" and "studentid"
+   
+   * alter table bookissues add constraint pk_bookid_studentid primary key(bookid,studentid);
+
+   - Add a foreign key constraint to refer the "bookid" attribute to "books" table.
+   
+   * alter table bookissues add constraint fk_bookid foreign key (bookid) references books(bookid);
+
+   
+   - Add a foreign key constraint to refer the "studentid" attribute to "students" table. 
+   
+   * alter table bookissues add constraint fk_studentid foreign key (studentid) references students(studentid);
+
+
+5. Insert the following records into the "departments" table:
+
+   - 1, 'MCA'
+   
+   * insert into departments values(1,'MCA');
+
+6. Insert the following records into the "bookissues" table:  
+   
+   - (2, 101, '2025-02-10', NULL, 0.00),
+   - (1, 102, '2025-02-12', '2025-02-18', 0.00);
+   
+   *  insert into bookissues values(2,101,'2025-02-10',NULL,default),(1,102,'2025-02-12','2025-02-18',default);
+   
+   
+7. List all books issued with student details (include attributes studentid, name, bookid, title)
+
+*- select books.bookid,title,students.studentid,name from books,students,bookissues where books.bookid=bookissues.bookid and students.studentid=bookissues.studentid;
+
+
+8. Show all students along with their department names (include attributes studentid, name, dname)
+
+*-
+
+9. List students who have issued books along with their department (include attributes studentid, name, dname, bookid, title)
+
+*-
+
+
+10. Find books that have never been issued (include attributes bookid, title)
+
+*-
+
+11. Get students who have not issued any book (include attributes studentid, name)
+
+*-
+
+12. Find students who have issued books but not returned them yet (include attributes studentid, name)
+
+*-
+
+13. List the books whose price greater than rupees 600 (include attributes bookid, title)
+
+*-
