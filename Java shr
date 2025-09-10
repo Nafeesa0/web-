@@ -1,0 +1,80 @@
+package com.example.sharedpreferences;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText name, age, email, mobile;
+    RadioGroup genderGroup;
+    CheckBox math, science, english, history;
+    Button registerBtn;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        name = findViewById(R.id.name);
+        age = findViewById(R.id.age);
+        email = findViewById(R.id.email);
+        mobile = findViewById(R.id.mobile);
+        genderGroup = findViewById(R.id.genderGroup);
+        math = findViewById(R.id.math);
+        science = findViewById(R.id.science);
+        english = findViewById(R.id.english);
+        history = findViewById(R.id.history);
+        registerBtn = findViewById(R.id.registerBtn);
+
+        sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = name.getText().toString().trim();
+                String userAge = age.getText().toString().trim();
+                String userEmail = email.getText().toString().trim();
+                String userMobile = mobile.getText().toString().trim();
+
+                if(username.isEmpty() || userAge.isEmpty() || userEmail.isEmpty() || userMobile.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Gender
+                int selectedId = genderGroup.getCheckedRadioButtonId();
+                String gender = "";
+                if (selectedId != -1) {
+                    RadioButton selectedRadio = findViewById(selectedId);
+                    gender = selectedRadio.getText().toString();
+                }
+
+                // Subjects
+                ArrayList<String> subjects = new ArrayList<>();
+                if (math.isChecked()) subjects.add("Mathematics");
+                if (science.isChecked()) subjects.add("Science");
+                if (english.isChecked()) subjects.add("English");
+                if (history.isChecked()) subjects.add("History");
+
+                // Save in SharedPreferences
+                editor.putString("Name", username);
+                editor.putString("Age", userAge);
+                editor.putString("Email", userEmail);
+                editor.putString("Mobile", userMobile);
+                editor.putString("Gender", gender);
+                editor.putString("Subjects", subjects.toString());
+                editor.apply();
+
+                Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
