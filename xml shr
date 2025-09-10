@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/name"
+            android:hint="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/age"
+            android:hint="Age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/mobile"
+            android:hint="Mobile Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"/>
+
+        <!-- Gender -->
+        <RadioGroup
+            android:id="@+id/genderGroup"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton android:id="@+id/male" android:text="Male"/>
+            <RadioButton android:id="@+id/female" android:text="Female"/>
+            <RadioButton android:id="@+id/other" android:text="Other"/>
+        </RadioGroup>
+
+        <!-- Subjects -->
+        <CheckBox android:id="@+id/math" android:text="Mathematics"/>
+        <CheckBox android:id="@+id/science" android:text="Science"/>
+        <CheckBox android:id="@+id/english" android:text="English"/>
+        <CheckBox android:id="@+id/history" android:text="History"/>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:text="Register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>
